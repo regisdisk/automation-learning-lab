@@ -1,0 +1,3 @@
+# Health Check Workflow Architecture
+
+Architecture documentation will be added here.
