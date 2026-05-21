@@ -1,5 +1,9 @@
 # Automation Learning Lab
 
+![Status](https://img.shields.io/badge/status-learning-blue)
+![Automation](https://img.shields.io/badge/focus-workflow--automation-green)
+![Cloud](https://img.shields.io/badge/cloud-OCI-orange)
+
 Hands-on experiments exploring workflow automation, APIs, containers and cloud deployment.
 
 ## Purpose
