@@ -1,0 +1,209 @@
+{
+  "name": "Workflow 03 — Site Monitor",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 1
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "5c49623d-505c-4538-a560-3bb76d614d45",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "url": "https://httpbin.org/status/200",
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": true,
+              "neverError": true
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        208,
+        0
+      ],
+      "id": "ea470a6d-d8cb-48a8-88b3-8522354f40ab",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "216fc256-2231-4ec1-a8de-095ce7f16099",
+              "leftValue": "={{$json.statusCode}}",
+              "rightValue": 200,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        416,
+        0
+      ],
+      "id": "ce3ed199-7a49-42a2-8278-60e3894bb2b4",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3977a469-340f-4ed8-baa6-a2d72171549c",
+              "name": "status",
+              "value": "healthy",
+              "type": "string"
+            },
+            {
+              "id": "8114437b-dabc-438d-be3d-e1ea3e2a795c",
+              "name": "checked_at",
+              "value": "={{$now}}",
+              "type": "string"
+            },
+            {
+              "id": "b0c2433f-336f-4a43-aac7-69f3c16b75b4",
+              "name": "message",
+              "value": "Site available",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        688,
+        -96
+      ],
+      "id": "b4da1320-11a0-44ed-966f-93ab40132fca",
+      "name": "Edit Fields TRUE"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3977a469-340f-4ed8-baa6-a2d72171549c",
+              "name": "status",
+              "value": "unhealthy",
+              "type": "string"
+            },
+            {
+              "id": "8114437b-dabc-438d-be3d-e1ea3e2a795c",
+              "name": "checked_at",
+              "value": "={{$now}}",
+              "type": "string"
+            },
+            {
+              "id": "b0c2433f-336f-4a43-aac7-69f3c16b75b4",
+              "name": "message",
+              "value": "Site unavailable",
+              "type": "string"
+            },
+            {
+              "id": "03168584-fa43-41ca-8291-5527186a0081",
+              "name": "severity",
+              "value": "warning",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        688,
+        112
+      ],
+      "id": "f09cbaeb-e255-40fc-944f-892c5579dc69",
+      "name": "Edit Fields FALSE"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields TRUE",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields FALSE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "0a8fb73f-2518-44e5-bff5-f1b4ed89961c",
+  "meta": {
+    "instanceId": "76fd985ca58fd442aad5f22fd191f7d2942d9bdd6357e492cc75e944b25ce0df"
+  },
+  "id": "cfjk34OxY8etGEYj",
+  "tags": []
+}
