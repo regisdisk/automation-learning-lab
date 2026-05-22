@@ -1,0 +1,100 @@
+{
+  "name": "Workflow 02 — Webhook Echo",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "echo",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "d2eff0ad-dcca-4c76-a495-787a1aff4d09",
+      "name": "Webhook",
+      "webhookId": "5a10a1ad-eece-4d32-933c-d4ce0f6374bf"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2f500e1f-6378-4052-bd52-2f45cbddb982",
+              "name": "message",
+              "value": "=Received: {{ $json.body.name }}",
+              "type": "string"
+            },
+            {
+              "id": "0ad76f1c-f853-4fec-b0a9-c5bfd42c8e51",
+              "name": "received_at",
+              "value": "={{$now}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        208,
+        0
+      ],
+      "id": "0a515326-4206-4ac6-9287-fcb76d360625",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        416,
+        0
+      ],
+      "id": "7bef39c6-e85e-43c4-b797-dbe9931d03e4",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "37fd0ad4-31c9-48ff-83c8-3acb132c80dd",
+  "meta": {
+    "instanceId": "76fd985ca58fd442aad5f22fd191f7d2942d9bdd6357e492cc75e944b25ce0df"
+  },
+  "id": "EUiGb4c23JcIUOSM",
+  "tags": []
+}
