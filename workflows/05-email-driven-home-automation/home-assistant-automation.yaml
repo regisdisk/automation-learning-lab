@@ -1,0 +1,17 @@
+alias: Visa Alert Off On
+
+trigger:
+  - platform: state
+    entity_id: input_boolean.visa_alert
+    from: "off"
+    to: "on"
+
+action:
+  - delay:
+      seconds: 5
+
+  - service: input_boolean.turn_off
+    target:
+      entity_id: input_boolean.visa_alert
+
+mode: single

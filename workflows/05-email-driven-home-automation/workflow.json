@@ -1,0 +1,52 @@
+{
+  "name": "workflow-05-email-driven-home-automation",
+
+  "nodes": [
+    {
+      "name": "Webhook",
+      "type": "Webhook",
+      "config": {
+        "method": "POST",
+        "path": "email-router"
+      }
+    },
+
+    {
+      "name": "Sender Validation",
+      "type": "IF",
+      "logic": {
+        "field": "body.from",
+        "operation": "contains",
+        "value": "<allowed_sender>"
+      }
+    },
+
+    {
+      "name": "Trigger Home Assistant",
+      "type": "HTTP Request",
+      "request": {
+        "method": "POST",
+        "url": "HOME_ASSISTANT_URL/api/services/input_boolean/turn_on",
+
+        "headers": {
+          "Authorization": "Bearer <TOKEN>",
+          "Content-Type": "application/json"
+        },
+
+        "body": {
+          "entity_id": "input_boolean.visa_alert"
+        }
+      }
+    }
+  ],
+
+  "connections": [
+    "Webhook -> Sender Validation",
+    "Sender Validation(TRUE) -> Trigger Home Assistant"
+  ],
+
+  "notes": [
+    "Sanitized public export",
+    "Local credentials removed"
+  ]
+}

@@ -1,15 +1,45 @@
-..env
+# =========================
+# Environment / Secrets
+# =========================
+.env
 .env.*
+*.secret
+*.key
+*.pem
+
+# =========================
+# Logs
+# =========================
 *.log
 
+# =========================
+# Dependencies
+# =========================
 node_modules/
-
-.vscode/settings.json
-
-docker-compose.override.yml
-
-workflow-local.json
-
 __pycache__/
 
+# =========================
+# IDE
+# =========================
+.vscode/settings.json
+
+# =========================
+# Local infrastructure
+# =========================
+docker-compose.override.yml
+workflow-local.json
+
+# OCI / Local notes
+**/*-local.*
+**/*-private.*
+
+# =========================
+# Private project assets
+# =========================
+**/private/*
+!**/private/.gitkeep
+
+# =========================
+# OS
+# =========================
 .DS_Store
