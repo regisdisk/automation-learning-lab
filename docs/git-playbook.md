@@ -83,6 +83,47 @@ Perguntar:
 
 
 
+# ==================================================
+# Public vs Private Boundary
+# ==================================================
+
+Objetivo:
+
+Separar:
+
+histórico público
+≠
+ativos operacionais
+
+Publicar:
+
+    workflows/
+    docs/
+
+Manter privado:
+
+    private/
+    exports/
+    infrastructure/
+    topology/
+
+Perguntar:
+
+    Este arquivo deve sobreviver
+    em um repositório público?
+
+Se NÃO:
+
+    manter fora do Git.
+
+Importante:
+
+.gitignore
+≠
+backup
+
+
+
 ==================================================
 # 0. Start — criar uma branch saudável
 # ==================================================
@@ -113,6 +154,43 @@ git checkout -b feature/<topic>
 
 
 # ==================================================
+# Staging Strategy
+# ==================================================
+
+Preferir:
+
+git add <path>
+
+Exemplo:
+
+git add workflows/06-voice-notification-layer/
+
+Evitar:
+
+git add .
+
+Usar git add . somente quando:
+
+- escopo pequeno
+- revisão concluída
+- sem arquivos privados
+
+Antes de executar:
+
+Perguntar:
+
+Estou adicionando exatamente
+o que desejo publicar?
+
+Modelo mental:
+
+Stage
+≠
+Selecionar tudo
+
+
+
+# ==================================================
 # 1. Work — registrar progresso
 # ==================================================
 
@@ -128,7 +206,7 @@ git status
         "Estou prestes a commitar exatamente o que quero?"
 
 
-git add .
+git add <path>
     Move alterações para staging area.
 
     Você está dizendo:
@@ -209,6 +287,51 @@ git push -u origin feature/<topic>
 
         Commit salva.
         Push publica.
+
+
+
+# ==================================================
+# Release Discipline
+# ==================================================
+
+Commit
+≠
+Release
+
+Criar release somente quando existir:
+
+□ documentação
+
+□ validação
+
+□ retrospectiva
+
+Sequência:
+
+Commit
+↓
+
+Push
+↓
+
+Tag
+↓
+
+Release
+↓
+
+Retrospective
+
+Evitar:
+
+criar release
+para experimentos incompletos
+
+Modelo mental:
+
+Release
+=
+incremento encerrado
 
 
 
@@ -381,6 +504,41 @@ git log --oneline --graph --decorate -10
 
 
 # ==================================================
+# New Workflow Gate
+# ==================================================
+
+Antes de abrir novo workflow:
+
+Perguntar:
+
+1. Existe release do anterior?
+
+2. Existe retrospectiva?
+
+3. Existe aprendizado reutilizável?
+
+Se qualquer resposta for NÃO:
+
+parar.
+
+Objetivo:
+
+evitar acumular experimentos
+sem encerramento
+
+Modelo mental:
+
+Finalizar
+↓
+
+Aprender
+↓
+
+Começar próximo
+
+
+
+# ==================================================
 # 8. Cleanup — encerrar ciclo
 # ==================================================
 
@@ -429,10 +587,46 @@ Perguntas finais:
 5. Se eu perder este notebook agora,
    consigo reconstruir o projeto?
 
+6. Estou publicando
+   somente o que pretendo?
+
+7. Existe algo ignorado
+   que deveria virar ativo?
+
+8. Este incremento
+   merece release?
 
 Se NÃO:
 
     revisar antes de encerrar.
+
+
+
+# ==================================================
+# Release Discipline
+# ==================================================
+
+Commit
+≠
+Release
+
+Criar release quando:
+
+- existe documentação
+- existe validação
+- existe retrospectiva
+
+Checklist:
+
+□ Commit
+□ Push
+□ Tag
+□ Release
+□ Retrospective
+
+Evitar:
+
+release para experimentos incompletos
 
 
 
