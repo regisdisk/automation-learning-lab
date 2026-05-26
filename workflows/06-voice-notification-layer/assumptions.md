@@ -24,3 +24,24 @@ Notification delivery is observable.
 
 Status:
 Unknown
+
+---
+
+## Design Decision
+
+Notification delivery must be channel-independent.
+
+Accepted channels:
+
+- Home Assistant UI
+- Voice
+- Push
+- Messaging
+
+Rejected:
+
+- Channel-coupled orchestration
+
+Reason:
+
+Business events must survive output channel replacement.
