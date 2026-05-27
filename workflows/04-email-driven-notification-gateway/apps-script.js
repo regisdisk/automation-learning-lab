@@ -1,7 +1,7 @@
 function checkEmails() {
 
   var threads = GmailApp.search(
-    'from:regisdisk@gmail.com OR from:@state.gov OR from:@usavisa-info.com is:unread'
+    'from:<e-mail1> OR from:@<domain1> OR from:@<domain1> is:unread'
   );
 
   if (threads.length === 0) {
@@ -9,7 +9,7 @@ function checkEmails() {
     return;
   }
 
-  var url = "http://134...19:5678/webhook/email-router";
+  var url = "https://<n8n-host>/webhook-test/<webhook-path>";
 
   threads.forEach(function(thread) {
 
