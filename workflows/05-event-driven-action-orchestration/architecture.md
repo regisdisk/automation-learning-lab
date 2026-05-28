@@ -2,21 +2,19 @@
 
 ## Sequence Diagram
 
-Email
-↓
-Apps Script
+Operational Event
 ↓
 n8n Webhook
 ↓
-IF
+Decision Logic
 ↓
 HTTP Request
 ↓
-Home Assistant
+Action Provider
 ↓
 input_boolean.visa_alert = ON
 ↓
-Automation
+External Action
 ↓
 Delay
 ↓
@@ -27,16 +25,16 @@ input_boolean.visa_alert = OFF
 ## Components
 
 Producer:
-Google Apps Script
+Event ingestion gateway
 
 Router:
 n8n
 
 Consumer:
-Home Assistant
+Home Assistant as action provider
 
 Executor:
-Automation
+External action automation
 
 ---
 
@@ -54,11 +52,11 @@ OFF
 
 ## Ownership
 
-Apps Script:
-Event collection
+Event ingestion gateway:
+Event collection and normalization
 
 n8n:
-Routing
+Orchestration and routing
 
 Home Assistant:
-State lifecycle
+Provider state lifecycle and action execution

@@ -1,18 +1,18 @@
-# Workflow 06 — Voice Notification Layer
+# Workflow 09 - Voice Notification Layer
 
 ## Goal
 
-Convert automation events into voice notifications.
+Convert governed automation events into channel-independent voice notifications.
 
 ---
 
 ## Candidate Approaches
 
-A — Alexa Media Player
+A - Alexa Media Player
 
-B — Home Assistant Assist
+B - Home Assistant Assist
 
-C — Event Queue + TTS
+C - Event Queue + TTS
 
 ---
 
@@ -25,8 +25,8 @@ Discovery
 ## Success Criteria
 
 Event
-→ Decision
-→ Voice
+-> Decision
+-> Voice
 
 ---
 
@@ -42,4 +42,4 @@ State ownership
 
 ## Dependency
 
-Workflow 05
+Workflow 05 - Event-Driven Action Orchestration

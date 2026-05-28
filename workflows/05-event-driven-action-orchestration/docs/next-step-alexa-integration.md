@@ -1,8 +1,8 @@
-# Next Step — Alexa Integration
+# Next Step - Voice Provider Integration
 
 ## Goal
 
-Replace Virtual Button with direct Home Assistant → Alexa integration.
+Validate a voice notification provider behind the existing action orchestration layer.
 
 ## Current Status
 
@@ -31,7 +31,7 @@ Observed:
 Validate:
 
 Home Assistant
-→ Alexa Media Player
-→ Echo discovery
-→ Announcement service
-→ Automation binding
+-> Alexa Media Player
+-> Echo discovery
+-> Announcement service
+-> Automation binding
