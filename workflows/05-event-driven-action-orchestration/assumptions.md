@@ -16,9 +16,9 @@ HTTP 200 does not mean:
 
 ## State
 
-Home Assistant owns state transitions.
+The action provider owns state transitions.
 
-n8n only emits events.
+n8n owns orchestration and emits provider actions.
 
 ---
 
@@ -27,5 +27,5 @@ n8n only emits events.
 Current behavior:
 
 Failure
-→ email remains unread
-→ retrigger possible
+-> source message remains unprocessed
+-> retrigger possible

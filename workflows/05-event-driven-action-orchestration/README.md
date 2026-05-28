@@ -1,8 +1,10 @@
-# Workflow 05 — Email Driven Home Automation
+# Workflow 05 - Event-Driven Action Orchestration
 
 ## Goal
 
-Build an event-driven workflow that converts email events into Home Assistant state changes and automated actions.
+Build an event-driven orchestration layer that converts normalized operational events into external actions through a provider boundary.
+
+Home Assistant is the current action provider; the workflow identity is orchestration across provider boundaries.
 
 ---
 
@@ -12,9 +14,9 @@ Traditional notification flows require user interaction.
 
 Example:
 
-Email
-→ Notification
-→ User reads notification
+Event
+-> Notification
+-> User reads notification
 
 This workflow removes manual interaction by converting events into automation triggers.
 
@@ -22,13 +24,13 @@ This workflow removes manual interaction by converting events into automation tr
 
 ## Architecture
 
-Google Apps Script
-→ HTTP POST
-→ n8n Webhook
-→ Conditional Routing
-→ Home Assistant API
-→ Helper State
-→ Automation
+Operational Event
+-> n8n Webhook
+-> Conditional Routing
+-> Action Provider API
+-> Provider State
+-> External Action Execution
+-> State Reset
 
 ---
 ## Detailed Architecture
@@ -49,22 +51,21 @@ The public version focuses on architecture concepts and reproducible workflow be
 ## Technologies
 
 - Google Apps Script
-- Gmail
+- Gmail as one ingestion channel
 - n8n
-- Home Assistant
+- Home Assistant as action provider
 - HTTP API
 
 ---
 
 ## Workflow
 
-1. Search unread emails
-2. Filter allowed senders
-3. Send event to n8n
-4. Validate conditions
-5. Trigger Home Assistant
-6. Execute automation
-7. Reset helper state
+1. Receive normalized event
+2. Validate orchestration conditions
+3. Route event to the selected action provider
+4. Trigger Home Assistant
+5. Execute external action
+6. Reset provider state
 
 ---
 
@@ -80,7 +81,7 @@ The public version focuses on architecture concepts and reproducible workflow be
 
 ---
 
-## Home Assistant State
+## Action Provider State
 
 Entity:
 
@@ -90,14 +91,14 @@ Lifecycle:
 
 OFF
 → ON
-→ Automation
+→ External Action
 → OFF
 
 ---
 
 ## Reliability Strategy
 
-Emails are marked as read only after:
+Source messages are marked as processed only after:
 
 HTTP 200 returned by n8n
 
@@ -116,12 +117,12 @@ Not guaranteed:
 ## Design Decisions
 
 Decision:
-Use Home Assistant instead of Virtual Button
+Use Home Assistant as the action provider instead of Virtual Button
 
 Benefits:
 
 - No external paid dependency
-- Local automation
+- Local action execution
 - State visibility
 - Extensible architecture
 
@@ -138,7 +139,7 @@ Benefits:
 
 ## Future Improvements
 
-- Alexa integration
+- Voice notification provider integration
 - Event persistence
 - Observability dashboard
 - Retry strategy

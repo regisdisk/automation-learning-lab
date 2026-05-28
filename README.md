@@ -4,7 +4,7 @@
 ![Automation](https://img.shields.io/badge/focus-workflow--automation-green)
 ![Cloud](https://img.shields.io/badge/cloud-OCI-orange)
 
-Hands-on experiments exploring workflow automation, APIs, containers and cloud deployment.
+Hands-on experiments exploring workflow automation, operational intelligence, event-driven systems, APIs, containers and cloud deployment.
 
 ## Purpose
 
@@ -16,10 +16,12 @@ This repository documents practical experiments designed to learn and apply:
 - Cloud deployment
 - Data transformation
 - Event-driven execution
+- Observability and operational intelligence
+- Workflow governance
 
 This is not intended to be a production-grade platform.
 
-The goal is to progressively evolve from small learning exercises into reusable automation patterns.
+The goal is to progressively evolve from small automation exercises into reusable patterns for event ingestion, observability, orchestration and operational governance.
 
 ---
 
@@ -53,7 +55,14 @@ Automation:
 | Workflow | Status |
 |----------|--------|
 | 01 - Health Check | Completed |
-| 02 - Webhook Echo | Planned |
+| 02 - Webhook Echo | Completed |
+| 03 - Site Monitor | Completed |
+| 04 - Event Ingestion Gateway | Completed |
+| 05 - Event-Driven Action Orchestration | Completed |
+| 06 - Stateful Alert Management | Planned |
+| 07 - Workflow Persistence Layer | Planned |
+| 08 - Operational Dashboard Feed | Planned |
+| 09 - Voice Notification Layer | Discovery |
 
 ---
 

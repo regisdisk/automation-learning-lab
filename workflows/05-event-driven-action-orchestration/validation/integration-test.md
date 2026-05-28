@@ -1,10 +1,10 @@
-# Integration Test — Webhook → Home Assistant
+# Integration Test - Webhook to Action Provider
 
 ## Objective
 
 Validate the complete event processing pipeline using a simulated external client.
 
-The goal is to confirm that incoming events trigger the expected Home Assistant automation.
+The goal is to confirm that incoming events trigger the expected Home Assistant action provider behavior.
 
 ---
 

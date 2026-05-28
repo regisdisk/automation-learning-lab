@@ -1,6 +1,6 @@
 # Architecture
 
-Workflow 05
+Workflow 05 - Event-Driven Action Orchestration
 ↓
 Home Assistant
 ↓
